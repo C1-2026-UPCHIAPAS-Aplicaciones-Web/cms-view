@@ -7,9 +7,9 @@ import { RetentionHistogramCard } from '@dashboard/view/RetentionHistogramCard';
 import { TrafficPieCard } from '@dashboard/view/TrafficPieCard';
 import { RankingTableCard } from '@dashboard/view/RankingTableCard';
 import { AddSiteModal } from '@dashboard/view/AddSiteModal';
+import { IconChartBar, IconPlus, IconThemeContrast } from '@shared/view/SvgIcons';
 
 interface DashboardViewProps {
-  onOpenEditor: () => void;
   onToggleTheme: () => void;
   onNotify: (text: string) => void;
 }
@@ -17,7 +17,6 @@ interface DashboardViewProps {
 const PERIOD_LIST: PeriodConfig[] = Object.values(DASHBOARD_PERIODS);
 
 export function DashboardView({
-  onOpenEditor,
   onToggleTheme,
   onNotify,
 }: DashboardViewProps) {
@@ -31,7 +30,9 @@ export function DashboardView({
       <header className="topbar">
         <div className="topbar-left">
           <div className="brand">
-            <div className="brand-icon">&lt;/&gt;</div>
+            <div className="brand-icon">
+              <IconChartBar size={15} />
+            </div>
             <span>InkStack Analytics</span>
           </div>
 
@@ -56,7 +57,8 @@ export function DashboardView({
               data-tooltip="Registra un nuevo sitio/blog administrado en el panel"
               onClick={() => vm.setIsAddSiteOpen(true)}
             >
-              + Sitio
+              <IconPlus size={13} />
+              <span>Sitio</span>
             </button>
           </div>
         </div>
@@ -64,19 +66,11 @@ export function DashboardView({
         <div className="topbar-right">
           <button
             type="button"
-            className="btn"
-            data-tooltip="Ir al módulo de edición de artículos CMS"
-            onClick={onOpenEditor}
-          >
-            ✏️ Editor CMS
-          </button>
-          <button
-            type="button"
             className="btn btn-icon"
             data-tooltip="Alterna entre tema claro y oscuro"
             onClick={onToggleTheme}
           >
-            ◐
+            <IconThemeContrast size={15} />
           </button>
           <button
             type="button"

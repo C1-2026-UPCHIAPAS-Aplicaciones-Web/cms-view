@@ -1,5 +1,6 @@
 import type { RankingRow } from '@dashboard/model/dashboard.model';
 import { sharedUtilsService } from '@shared/service/shared-utils.service';
+import { IconClock } from '@shared/view/SvgIcons';
 
 interface RankingTableCardProps {
   rows: RankingRow[];
@@ -122,7 +123,10 @@ export function RankingTableCard({
                       </div>
                     </td>
                     <td>
-                      <span className="retention-pill">⏱ {row.retention} min</span>
+                      <span className="retention-pill" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                        <IconClock size={12} />
+                        {row.retention} min
+                      </span>
                     </td>
                     <td>
                       <span className={`trend-badge ${isUp ? 'up' : 'down'}`}>{row.trend}</span>

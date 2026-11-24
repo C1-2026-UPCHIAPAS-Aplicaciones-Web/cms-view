@@ -10,6 +10,7 @@ export default defineConfig({
       '@shared': fileURLToPath(new URL('./src/shared', import.meta.url)),
       '@dashboard': fileURLToPath(new URL('./src/dashboard', import.meta.url)),
       '@editor': fileURLToPath(new URL('./src/editor', import.meta.url)),
+      '@templates': fileURLToPath(new URL('./src/templates', import.meta.url)),
     },
   },
 });

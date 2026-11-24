@@ -5,9 +5,9 @@ import { PreviewPane } from '@editor/view/PreviewPane';
 import { InspectorSidebar } from '@editor/view/InspectorSidebar';
 import { ExportModal } from '@editor/view/ExportModal';
 import { sharedUtilsService } from '@shared/service/shared-utils.service';
+import { IconFileEdit, IconThemeContrast } from '@shared/view/SvgIcons';
 
 interface EditorViewProps {
-  onOpenDashboard: () => void;
   onToggleTheme: () => void;
   onNotify: (text: string) => void;
 }
@@ -19,7 +19,6 @@ const STATUS_LABELS = {
 } as const;
 
 export function EditorView({
-  onOpenDashboard,
   onToggleTheme,
   onNotify,
 }: EditorViewProps) {
@@ -35,7 +34,9 @@ export function EditorView({
       <header className="topbar">
         <div className="topbar-left">
           <div className="brand">
-            <div className="brand-icon">&lt;/&gt;</div>
+            <div className="brand-icon">
+              <IconFileEdit size={15} />
+            </div>
             <span>InkStack CMS</span>
           </div>
 
@@ -80,19 +81,11 @@ export function EditorView({
           </span>
           <button
             type="button"
-            className="btn"
-            data-tooltip="Volver al módulo de Dashboard Analítico"
-            onClick={onOpenDashboard}
-          >
-            📊 Dashboard
-          </button>
-          <button
-            type="button"
             className="btn btn-icon"
             data-tooltip="Alterna entre tema claro y tema oscuro"
             onClick={onToggleTheme}
           >
-            ◐
+            <IconThemeContrast size={15} />
           </button>
           <button
             type="button"

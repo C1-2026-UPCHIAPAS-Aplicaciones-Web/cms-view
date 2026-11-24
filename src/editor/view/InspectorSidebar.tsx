@@ -10,6 +10,7 @@ import type {
   TypographySettings,
 } from '@editor/model/editor.model';
 import { sharedUtilsService } from '@shared/service/shared-utils.service';
+import { IconClose } from '@shared/view/SvgIcons';
 
 interface InspectorSidebarProps {
   doc: PostDocument;
@@ -70,7 +71,7 @@ export function InspectorSidebar({
           data-tooltip="Oculta el panel lateral derecho"
           onClick={onCloseSidebar}
         >
-          ✕
+          <IconClose size={14} />
         </button>
       </div>
 
@@ -189,7 +190,7 @@ export function InspectorSidebar({
                       data-tooltip="Quitar etiqueta"
                       onClick={() => onRemoveTag(idx)}
                     >
-                      ×
+                      <IconClose size={11} />
                     </button>
                   </span>
                 ))}
@@ -428,7 +429,7 @@ export function InspectorSidebar({
                         data-tooltip="Elimina esta fuente importada"
                         onClick={() => onRemoveCustomFont(f.id)}
                       >
-                        ✕
+                        <IconClose size={13} />
                       </button>
                     </div>
                   ))}

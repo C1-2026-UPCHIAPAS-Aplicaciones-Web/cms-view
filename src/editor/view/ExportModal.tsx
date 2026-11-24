@@ -1,4 +1,5 @@
 import type { ExportMode } from '@editor/model/editor.model';
+import { IconClose } from '@shared/view/SvgIcons';
 
 interface ExportModalProps {
   isOpen: boolean;
@@ -37,7 +38,7 @@ export function ExportModal({
             data-tooltip="Cierra la ventana de exportación"
             onClick={onClose}
           >
-            ✕
+            <IconClose size={14} />
           </button>
         </div>
         <div className="modal-body">

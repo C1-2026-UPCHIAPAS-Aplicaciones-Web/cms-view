@@ -10,6 +10,22 @@ import {
   BLOCK_LABELS,
   CODE_LANGUAGES,
 } from '@editor/service/editor-document.service';
+import {
+  IconArrowDown,
+  IconArrowUp,
+  IconClose,
+  IconCode,
+  IconCopy,
+  IconFileEdit,
+  IconGripVertical,
+  IconImage,
+  IconLightbulb,
+  IconLink,
+  IconList,
+  IconMinus,
+  IconQuote,
+  IconTypeParagraph,
+} from '@shared/view/SvgIcons';
 
 interface EditorPaneProps {
   doc: PostDocument;
@@ -40,6 +56,25 @@ interface EditorPaneProps {
   onRemoveImageSlot: (blockId: string, imageId: string) => void;
   onUploadImageFile: (blockId: string, imageId: string, file: File) => void;
   onNotify: (msg: string) => void;
+}
+
+function BlockTypeSvg({ type }: { type: BlockType }) {
+  switch (type) {
+    case 'code':
+      return <IconCode size={13} />;
+    case 'callout':
+      return <IconLightbulb size={13} />;
+    case 'list':
+      return <IconList size={13} />;
+    case 'quote':
+      return <IconQuote size={13} />;
+    case 'image':
+      return <IconImage size={13} />;
+    case 'divider':
+      return <IconMinus size={13} />;
+    default:
+      return <IconTypeParagraph size={13} />;
+  }
 }
 
 function autoResizeEl(el: HTMLTextAreaElement | null) {
@@ -132,7 +167,7 @@ function InlineFormatBar({
           applyFormat('link');
         }}
       >
-        🔗
+        <IconLink size={13} />
       </button>
     </div>
   );
@@ -269,9 +304,12 @@ function EditorBlockCard({
               });
             }}
           >
-            ⋮⋮
+            <IconGripVertical size={14} />
           </button>
-          <span className="block-type-badge">{BLOCK_LABELS[block.type]}</span>
+          <span className="block-type-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
+            <BlockTypeSvg type={block.type} />
+            {BLOCK_LABELS[block.type]}
+          </span>
         </div>
 
         <div className="block-actions">
@@ -281,7 +319,7 @@ function EditorBlockCard({
             data-tooltip="Sube esta sección una posición"
             onClick={() => onMoveBlock(-1)}
           >
-            ↑
+            <IconArrowUp size={13} />
           </button>
           <button
             type="button"
@@ -289,7 +327,7 @@ function EditorBlockCard({
             data-tooltip="Baja esta sección una posición"
             onClick={() => onMoveBlock(1)}
           >
-            ↓
+            <IconArrowDown size={13} />
           </button>
           <button
             type="button"
@@ -297,7 +335,7 @@ function EditorBlockCard({
             data-tooltip="Duplica esta sección debajo"
             onClick={onDuplicateBlock}
           >
-            ⧉
+            <IconCopy size={13} />
           </button>
           <button
             type="button"
@@ -305,7 +343,7 @@ function EditorBlockCard({
             data-tooltip="Elimina esta sección del artículo"
             onClick={onDeleteBlock}
           >
-            ✕
+            <IconClose size={13} />
           </button>
         </div>
       </div>
@@ -396,10 +434,10 @@ function EditorBlockCard({
                 onUpdateBlock((b) => ({ ...b, variant: e.target.value as CalloutVariant }))
               }
             >
-              <option value="info">ℹ️ Info / Nota</option>
-              <option value="tip">✅ Tip / Consejo</option>
-              <option value="warning">⚠️ Advertencia</option>
-              <option value="danger">🚨 Importante</option>
+              <option value="info">Info / Nota</option>
+              <option value="tip">Tip / Consejo</option>
+              <option value="warning">Advertencia</option>
+              <option value="danger">Importante</option>
             </select>
             <input
               type="text"
@@ -730,8 +768,11 @@ export function EditorPane({
     <div className="pane-column editor-col">
       <div className="pane-banner editor-banner">
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <span className="pane-badge design">✏️ Vista de Diseño / Edición</span>
-          <span className="pane-subhint">Arrastra ⋮⋮ para reordenar secciones</span>
+          <span className="pane-badge design">
+            <IconFileEdit size={13} />
+            Vista de Diseño / Edición
+          </span>
+          <span className="pane-subhint">Arrastra el tirador para reordenar secciones</span>
         </div>
         {!doc.coverEnabled && (
           <button
@@ -750,7 +791,10 @@ export function EditorPane({
           {doc.coverEnabled && (
             <div className={`cover-box ${doc.coverImage ? 'has-image' : ''}`}>
               <div className="cover-box-header">
-                <span>🖼️ Portada del artículo</span>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                  <IconImage size={14} />
+                  Portada del artículo
+                </span>
                 <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
                   <label
                     className="btn btn-sm"
@@ -876,7 +920,8 @@ export function EditorPane({
                 data-tooltip="Agrega un nuevo bloque de párrafo de texto"
                 onClick={() => onAddBlock('paragraph')}
               >
-                ¶ Párrafo
+                <IconTypeParagraph size={13} />
+                <span>Párrafo</span>
               </button>
               <button
                 type="button"
@@ -900,7 +945,8 @@ export function EditorPane({
                 data-tooltip="Agrega un bloque de código con lenguaje, archivo y líneas resaltadas"
                 onClick={() => onAddBlock('code')}
               >
-                &lt;/&gt; Código
+                <IconCode size={13} />
+                <span>Código</span>
               </button>
               <button
                 type="button"
@@ -908,7 +954,8 @@ export function EditorPane({
                 data-tooltip="Agrega un cuadro destacado de Nota, Tip, Advertencia o Importante"
                 onClick={() => onAddBlock('callout')}
               >
-                💡 Nota
+                <IconLightbulb size={13} />
+                <span>Nota</span>
               </button>
               <button
                 type="button"
@@ -916,7 +963,8 @@ export function EditorPane({
                 data-tooltip="Agrega una lista con viñetas o numerada"
                 onClick={() => onAddBlock('list')}
               >
-                • Lista
+                <IconList size={13} />
+                <span>Lista</span>
               </button>
               <button
                 type="button"
@@ -924,7 +972,8 @@ export function EditorPane({
                 data-tooltip="Agrega una cita destacada con autor opcional"
                 onClick={() => onAddBlock('quote')}
               >
-                ❝ Cita
+                <IconQuote size={13} />
+                <span>Cita</span>
               </button>
               <button
                 type="button"
@@ -932,7 +981,8 @@ export function EditorPane({
                 data-tooltip="Agrega un bloque de una o más imágenes con anclaje y tamaño editable"
                 onClick={() => onAddBlock('image')}
               >
-                🖼 Imágenes
+                <IconImage size={13} />
+                <span>Imágenes</span>
               </button>
               <button
                 type="button"
@@ -940,7 +990,7 @@ export function EditorPane({
                 data-tooltip="Agrega una línea horizontal separadora"
                 onClick={() => onAddBlock('divider')}
               >
-                —
+                <IconMinus size={13} />
               </button>
             </div>
           </div>

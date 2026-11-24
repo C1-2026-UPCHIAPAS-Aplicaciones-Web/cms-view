@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import type {
   DocumentStats,
   EditorBlock,
@@ -8,6 +8,13 @@ import type {
 } from '@editor/model/editor.model';
 import { editorDocumentService } from '@editor/service/editor-document.service';
 import { sharedUtilsService } from '@shared/service/shared-utils.service';
+import {
+  IconAlertOctagon,
+  IconAlertTriangle,
+  IconCheckCircle,
+  IconEye,
+  IconInfo,
+} from '@shared/view/SvgIcons';
 
 interface PreviewPaneProps {
   doc: PostDocument;
@@ -98,11 +105,11 @@ export function PreviewPane({
         }
       : undefined;
 
-  const calloutIcons: Record<string, string> = {
-    info: 'ℹ️',
-    tip: '✅',
-    warning: '⚠️',
-    danger: '🚨',
+  const calloutIcons: Record<string, ReactNode> = {
+    info: <IconInfo size={15} />,
+    tip: <IconCheckCircle size={15} />,
+    warning: <IconAlertTriangle size={15} />,
+    danger: <IconAlertOctagon size={15} />,
   };
 
   const handleCopyCode = async (blockId: string, code: string) => {
@@ -120,7 +127,10 @@ export function PreviewPane({
     <div className="pane-column preview-col">
       <div className="pane-banner preview-banner">
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <span className="pane-badge live">👁️ Vista Previa</span>
+          <span className="pane-badge live">
+            <IconEye size={13} />
+            Vista Previa
+          </span>
           <span className="pane-subhint">Haz clic en los textos para editarlos directamente</span>
         </div>
 
@@ -384,7 +394,9 @@ export function PreviewPane({
                   return (
                     <div key={block.id} className={`preview-callout ${variant}`}>
                       <div className="preview-callout-title">
-                        <span>{calloutIcons[variant] || 'ℹ️'}</span>
+                        <span style={{ display: 'inline-flex', alignItems: 'center' }}>
+                          {calloutIcons[variant] || calloutIcons.info}
+                        </span>
                         <span
                           contentEditable
                           suppressContentEditableWarning

@@ -3,6 +3,7 @@ import type {
   SiteComputedStats,
 } from '@dashboard/model/dashboard.model';
 import { sharedUtilsService } from '@shared/service/shared-utils.service';
+import { IconChartBar, IconClock, IconEye, IconUser } from '@shared/view/SvgIcons';
 
 interface SummaryQuadrantsTableProps {
   globalSummary: GlobalQuadrantSummary;
@@ -65,7 +66,7 @@ export function SummaryQuadrantsTable({
                   <div className="quadrant-cell">
                     <div className="quadrant-label">
                       <span>Número de visitas</span>
-                      <span>👁️</span>
+                      <IconEye size={15} />
                     </div>
                     <div className="quadrant-value">
                       {sharedUtilsService.formatNumber(globalSummary.totalVisits)}
@@ -79,7 +80,7 @@ export function SummaryQuadrantsTable({
                   <div className="quadrant-cell">
                     <div className="quadrant-label">
                       <span>Visitantes únicos</span>
-                      <span>👤</span>
+                      <IconUser size={15} />
                     </div>
                     <div className="quadrant-value">
                       {sharedUtilsService.formatNumber(globalSummary.totalUnique)}
@@ -93,7 +94,7 @@ export function SummaryQuadrantsTable({
                   <div className="quadrant-cell">
                     <div className="quadrant-label">
                       <span>Retención promedio</span>
-                      <span>⏱️</span>
+                      <IconClock size={15} />
                     </div>
                     <div className="quadrant-value">
                       {globalSummary.weightedRetention.toFixed(1)} min
@@ -107,7 +108,7 @@ export function SummaryQuadrantsTable({
                   <div className="quadrant-cell">
                     <div className="quadrant-label">
                       <span>Proporción</span>
-                      <span>📊</span>
+                      <IconChartBar size={15} />
                     </div>
                     <div className="quadrant-value">100%</div>
                     <div className="quadrant-footer">
@@ -175,7 +176,7 @@ export function SummaryQuadrantsTable({
                   <div className="quadrant-cell">
                     <div className="quadrant-label">
                       <span>Número de visitas</span>
-                      <span>👁️</span>
+                      <IconEye size={15} />
                     </div>
                     <div className="quadrant-value">
                       {focusSite ? sharedUtilsService.formatNumber(focusSite.visits) : '0'}
@@ -189,7 +190,7 @@ export function SummaryQuadrantsTable({
                   <div className="quadrant-cell">
                     <div className="quadrant-label">
                       <span>Visitantes únicos</span>
-                      <span>👤</span>
+                      <IconUser size={15} />
                     </div>
                     <div className="quadrant-value">
                       {focusSite ? sharedUtilsService.formatNumber(focusSite.unique) : '0'}
@@ -203,7 +204,7 @@ export function SummaryQuadrantsTable({
                   <div className="quadrant-cell">
                     <div className="quadrant-label">
                       <span>Retención promedio</span>
-                      <span>⏱️</span>
+                      <IconClock size={15} />
                     </div>
                     <div className="quadrant-value">
                       {focusSite ? `${focusSite.retention.toFixed(1)} min` : '0 min'}
@@ -219,7 +220,7 @@ export function SummaryQuadrantsTable({
                   <div className="quadrant-cell">
                     <div className="quadrant-label">
                       <span>Proporción de visitas</span>
-                      <span>📊</span>
+                      <IconChartBar size={15} />
                     </div>
                     <div className="quadrant-value">
                       {focusSite ? `${focusSite.sharePct.toFixed(1)}%` : '0%'}

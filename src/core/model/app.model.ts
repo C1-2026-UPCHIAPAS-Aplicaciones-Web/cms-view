@@ -1,4 +1,4 @@
-export type AppModuleId = 'dashboard' | 'editor';
+export type AppModuleId = 'dashboard' | 'editor' | 'templates';
 
 export type ThemeMode = 'light' | 'dark';
 

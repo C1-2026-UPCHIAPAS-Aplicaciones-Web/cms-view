@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { AddSiteFormInput } from '@dashboard/model/dashboard.model';
+import { IconClose } from '@shared/view/SvgIcons';
 
 interface AddSiteModalProps {
   isOpen: boolean;
@@ -34,8 +35,8 @@ export function AddSiteModal({ isOpen, onClose, onSave }: AddSiteModalProps) {
       <div className="modal" role="dialog" aria-modal="true" aria-label="Agregar sitio administrado">
         <div className="modal-header">
           <span>Agregar sitio administrado</span>
-          <button type="button" className="btn btn-sm" onClick={onClose}>
-            ✕
+          <button type="button" className="btn btn-sm btn-icon" onClick={onClose}>
+            <IconClose size={14} />
           </button>
         </div>
         <div className="modal-body">

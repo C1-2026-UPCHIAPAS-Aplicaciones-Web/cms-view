@@ -44,15 +44,15 @@ export const CODE_LANGUAGES = [
 ];
 
 export const BLOCK_LABELS: Record<BlockType, string> = {
-  paragraph: '¶ Párrafo',
+  paragraph: 'Párrafo',
   h2: 'H2 Encabezado',
   h3: 'H3 Subsección',
-  code: '</> Bloque de código',
-  callout: '💡 Callout / Nota',
-  list: '• Lista',
-  quote: '❝ Cita',
-  image: '🖼 Imágenes',
-  divider: '— Separador',
+  code: 'Bloque de código',
+  callout: 'Callout / Nota',
+  list: 'Lista',
+  quote: 'Cita',
+  image: 'Imágenes',
+  divider: 'Separador',
 };
 
 export function createSamplePost(): PostDocument {

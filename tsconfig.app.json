@@ -22,7 +22,8 @@
       "@core/*": ["src/core/*"],
       "@shared/*": ["src/shared/*"],
       "@dashboard/*": ["src/dashboard/*"],
-      "@editor/*": ["src/editor/*"]
+      "@editor/*": ["src/editor/*"],
+      "@templates/*": ["src/templates/*"]
     }
   },
   "include": ["src"]

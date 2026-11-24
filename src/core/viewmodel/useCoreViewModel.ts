@@ -8,6 +8,7 @@ export function useCoreViewModel() {
   );
   const [theme, setTheme] = useState<ThemeMode>(() => coreStorageService.loadTheme());
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
+  const [navCollapsed, setNavCollapsed] = useState<boolean>(false);
 
   useEffect(() => {
     coreStorageService.applyTheme(theme);
@@ -30,6 +31,10 @@ export function useCoreViewModel() {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
   }, []);
 
+  const toggleNavCollapsed = useCallback(() => {
+    setNavCollapsed((prev) => !prev);
+  }, []);
+
   const navigateTo = useCallback((moduleId: AppModuleId) => {
     setActiveModule(moduleId);
   }, []);
@@ -46,7 +51,9 @@ export function useCoreViewModel() {
     activeModule,
     theme,
     toasts,
+    navCollapsed,
     toggleTheme,
+    toggleNavCollapsed,
     navigateTo,
     notify,
   };

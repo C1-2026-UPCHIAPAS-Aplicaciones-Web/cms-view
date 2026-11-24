@@ -44,7 +44,7 @@ export const coreStorageService = {
 
   resolveInitialModule(): AppModuleId {
     const hash = window.location.hash.replace('#', '').trim();
-    if (hash === 'editor' || hash === 'dashboard') {
+    if (hash === 'editor' || hash === 'dashboard' || hash === 'templates') {
       return hash;
     }
     return 'dashboard';
